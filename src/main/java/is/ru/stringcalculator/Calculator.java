@@ -30,9 +30,13 @@ public class Calculator {
 
 	private static int sum(String[] numbers){
 		int total = 0;
+		int numb = 0;
 
 		for(String number : numbers) {
-			total += toInt(number);
+			numb = toInt(number);
+
+			if(numb <= 1000)
+				total += numb;
 		}
 
 		return total;
