@@ -29,4 +29,14 @@ public class CalculatorTest {
     public void testNewLineChar(){
     	assertEquals(6, Calculator.add("1\n2,3"));
     }
+
+  	@Test (expected = IllegalArgumentException.class)
+    public void testExpceptionNegatives(){
+    	assertEquals("Negatives not allowed: -1", Calculator.add("-1,2"));
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void testExpceptionForMultipleNegatives(){
+    	assertEquals("Negatives not allowed: -4,-5", Calculator.add("2,-4,3,-5"));
+    }
 }
