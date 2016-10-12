@@ -6,16 +6,13 @@ public class Calculator {
 
 	public static int add(String text){
 
-		checkNegativeNumb(text);
-
-		if(text.equals("")){
+		if(isEmpty(text)){
 			return 0;
 		}
-		else if(text.contains(",")){
+		else {
+			checkNegativeNumb(text);
 			return sum(splitNumbers(text));
 		}
-		else
-			return 1;
 	}
 
 	private static int toInt(String text) {
@@ -41,14 +38,19 @@ public class Calculator {
 		return total;
 	}
 
-	private static void checkNegativeNumb(String text) {
-		if(text.equals(""))
-			return;
+	private static boolean isEmpty(String text) {
+		if(text.equals("")) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 
+	private static void checkNegativeNumb(String text) {
 		String[] numbers = splitNumbers(text);
 		ArrayList<Integer> negNumbers = new ArrayList<Integer>();
 		int checkNumb = 0;
-		int counter = 0;
 		String result = "";
 
 		for(String number : numbers) {
@@ -56,17 +58,16 @@ public class Calculator {
 
 			if(checkNumb < 0) {
 				negNumbers.add(checkNumb);
-				counter++;
 			}
 		}
 
 		if(negNumbers.size() != 0) {
-			int i = 0;
+			int counter = 0;
 			for(Integer numb : negNumbers) {
 				result += toString(numb);
-				if( i != counter-1)
+				if( counter != negNumbers.size() - 1)
 					result += ", ";
-				i++;
+				counter++;
 			}
 
 			throw new IllegalArgumentException("Negatives not allowed: " + result);
