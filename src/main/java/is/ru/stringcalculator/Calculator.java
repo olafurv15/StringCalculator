@@ -10,8 +10,10 @@ public class Calculator {
 			return 0;
 		}
 		else {
-			checkNegativeNumb(text);
-			return sum(splitNumbers(text));
+			//checkNegativeNumb(text);
+			String[] numbArray = splitNumbers(text);
+			checkNegativeNumb(numbArray);
+			return sum(numbArray);
 		}
 	}
 
@@ -24,8 +26,17 @@ public class Calculator {
 	}
 
 	private static String[] splitNumbers(String numbers) {
-		numbers = numbers.replace("\n", ",");
-		return numbers.split(",");
+		if(numbers.contains("//")) {
+			String [] splitNumbers = numbers.split("//");
+			String delimiter = splitNumbers[1].substring(0,1);
+			numbers = splitNumbers[1].substring(2);
+			//numbers = numbers.replace("\n", ",");
+			return numbers.split(delimiter);
+		}
+		else {
+			numbers = numbers.replace("\n", ",");
+			return numbers.split(",");
+		}
 	}
 
 	private static int sum(String[] numbers){
@@ -51,8 +62,8 @@ public class Calculator {
 		}
 	}
 
-	private static void checkNegativeNumb(String text) {
-		String[] numbers = splitNumbers(text);
+	private static void checkNegativeNumb(String[] numbers) {
+		//String[] numbers = splitNumbers(text);
 		ArrayList<Integer> negNumbers = new ArrayList<Integer>();
 		int checkNumb = 0;
 		String result = "";

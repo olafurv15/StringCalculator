@@ -44,4 +44,9 @@ public class CalculatorTest {
     public void testHigherThan1000(){
     	assertEquals(2, Calculator.add("1001,2"));
     }
+
+   	@Test
+    public void testDelimiterChar(){
+    	assertEquals(3, Calculator.add("//;\n1;2"));
+    }
 }
