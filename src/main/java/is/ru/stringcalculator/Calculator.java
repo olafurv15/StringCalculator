@@ -10,7 +10,6 @@ public class Calculator {
 			return 0;
 		}
 		else {
-			//checkNegativeNumb(text);
 			String[] numbArray = splitNumbers(text);
 			checkNegativeNumb(numbArray);
 			return sum(numbArray);
@@ -30,7 +29,7 @@ public class Calculator {
 			String [] splitNumbers = numbers.split("//");
 			String delimiter = splitNumbers[1].substring(0,1);
 			numbers = splitNumbers[1].substring(2);
-			//numbers = numbers.replace("\n", ",");
+
 			return numbers.split(delimiter);
 		}
 		else {
@@ -62,8 +61,7 @@ public class Calculator {
 		}
 	}
 
-	private static void checkNegativeNumb(String[] numbers) {
-		//String[] numbers = splitNumbers(text);
+	private static void checkNegativeNumb(String[] numbers) throws IllegalArgumentException {
 		ArrayList<Integer> negNumbers = new ArrayList<Integer>();
 		int checkNumb = 0;
 		String result = "";
